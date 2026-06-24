@@ -698,10 +698,10 @@ function compute(){const base=42,K=1.95,score=[base,base,base,base,base];
   for(let a=0;a<5;a++)score[a]+=Math.random()*10-5;
   for(let a=0;a<5;a++)score[a]=Math.max(2,Math.min(100,Math.round(score[a])));
   let mixBad=null;
-  if(ratios[0]===0)mixBad={axisKill:null,v:"こなごな",cm:"固まらなかった… これは パッドではなく “粉” です"};
-  else if(ratios[2]===0)mixBad={axisKill:0,v:"とまらず",cm:"まさつが 足りず まったく 止まれぬ パッドが 生まれた"};
+  if(ratios[0]===0)mixBad={axisKill:null,v:"こなごな",cm:"固まらなかった… これでは きけんだ！"};
+  else if(ratios[2]===0)mixBad={axisKill:0,v:"とまらず",cm:"まさつが 足りず 止まれぬ パッドが 生まれた"};
   else if(ratios[1]===0)mixBad={axisKill:1,v:"ほうかい",cm:"骨格が なく ブレーキ時に 崩壊してしまう"};
-  else if(ratios[3]===0)mixBad={axisKill:2,v:"なき",cm:"キィィィィィィィィ！ しずけさが まるで ない"};
+  else if(ratios[3]===0)mixBad={axisKill:2,v:"なき",cm:"キィィィィィィ！ しずけさが まるで ない"};
   const legend=CATS.some((c,i)=>c.opts[chosen[i]].leg);
   return{score,firing,mixBad,heat,legend};}
 
@@ -713,7 +713,7 @@ function summarize(score){const idx=[0,1,2,3,4];
   const total=Math.round(score.reduce((a,b)=>a+b,0)/5);
   const tier=total>=72?"まさに 伝説級の できばえだ":total>=60?"なかなかの じつりょくだ":total>=44?"まずまずの できだな":"まだ 改良の よちが あるぞ";
   const lines=[{t:sH[top],cls:"summary"}];
-  if(score[low]>=58)lines.push({t:"しかも すべてが 高い水準で まとまっている",cls:"summary"});
+  if(score[low]>=58)lines.push({t:"すべてが 高い水準で まとまっている",cls:"summary"});
   else if(top!==low)lines.push({t:sL[low],cls:"summary"});
   lines.push({t:tier,cls:"summary"});return lines;}
 function buildComments(R,finalScore){const out=[];
@@ -725,16 +725,17 @@ function buildComments(R,finalScore){const out=[];
   if(ratios[1]>80)mix.push("骨組みは つよいが しずけさが おちたな");
   mix.slice(0,4).forEach(t=>out.push({t,cls:""}));
   if(R.firing==="undercook")out.push({t:"まだ 固まりきっていない… このままでは あぶないぞ",cls:"bad"});
-  else if(R.firing==="overheat")out.push({t:"焼きすぎて 材料が 劣化してしまったようだ",cls:"bad"});
+  else if(R.firing==="overheat")out.push({t:"焼きすぎて 原料が 劣化してしまったようだ",cls:"bad"});
   if(R.legendLike){
-    out.push({t:"伝説の 原料が ほのかに 黄金いろに かがやく",cls:"leg"});
-    out.push({t:"だが 原料頼み では　真価は 眠ったまま。　原料の安定供給も未知数。",cls:"legwarn"});
-    out.push({t:"配合と プレスを きわめてこそ 真のでんせつに 近づく",cls:"legwarn"});
+    out.push({t:"伝説の原料が ほのかに 黄金色に かがやく",cls:"leg"});
+    out.push({t:"だが 原料頼み では　真価は 眠ったまま",cls:"legwarn"});
+    out.push({t:"原料の　安定供給も　未知数…",cls:"legwarn"});
+    out.push({t:"配合とプレスを極めてこそ 真の伝説に近づく",cls:"legwarn"});
   }
   if(R.trueLegend){
-    out.push({t:"な…なんと！ すべての せいのうが 極みに 達した…！",cls:"leg"});
+    out.push({t:"な…なんと！ 全ての 性能が 極みに 達した…！",cls:"leg"});
     out.push({t:"設計の ちからで ここまで とは…！",cls:"leg"});
-    out.push({t:"ごくまれにしか 設計できぬ これぞ伝説の まさつ材だ！！",cls:"leg"});
+    out.push({t:"極まれにしか 設計できぬ これぞ伝説の まさつ材だ！！",cls:"leg"});
   }
   summarize(finalScore).forEach(l=>out.push(l));
   return out;}
