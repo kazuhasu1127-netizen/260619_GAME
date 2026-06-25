@@ -359,7 +359,7 @@ const CATS=[
     {name:"高摩擦研削材",leg:false,ic:"abr_hi",c:[20,-15,-10,-5,-5],d:"止まるためには 削るしかない 潔い素材",cm:"高摩擦研削材で 制動を とがらせたな"},
     {name:"環境配慮研削材",leg:false,ic:"abr_eco",c:[-5,0,5,20,-10],d:"地球に優しいが 攻めの走りには 向かない",cm:"環境に やさしい 研削材を えらんだようだ"},
   ]},
-  {key:"lub",jp:"潤滑材",room:"しずけさ の まじゅつ。なきを おさえる",opts:[
+  {key:"lub",jp:"潤滑材",room:"しずけさ の もと。なきを おさえる",opts:[
     {name:"標準潤滑材",leg:false,ic:"lub_std",c:[-5,5,10,0,0],d:"静かに止まることを 大切にする 紳士",cm:"潤滑材が しずけさを 加えてくれた"},
     {name:"高潤滑材",leg:false,ic:"lub_hi",c:[-10,10,20,5,-5],d:"とにかく静か。静かすぎて 存在を忘れる",cm:"静かに止まる しゅうせいが 加わった"},
     {name:"持続可能性潤滑材",leg:false,ic:"lub_eco",c:[-5,0,5,20,-10],d:"未来のために 選ばれる素材",cm:"未来を おもう 潤滑材を えらんだな"},
@@ -699,7 +699,7 @@ function compute(){const base=42,K=1.95,score=[base,base,base,base,base];
   for(let a=0;a<5;a++)score[a]=Math.max(2,Math.min(100,Math.round(score[a])));
   let mixBad=null;
   if(ratios[0]===0)mixBad={axisKill:null,v:"こなごな",cm:"固まらなかった… これでは きけんだ！"};
-  else if(ratios[2]===0)mixBad={axisKill:0,v:"とまらず",cm:"まさつが 足りず 止まれぬ パッドが 生まれた"};
+  else if(ratios[2]===0)mixBad={axisKill:0,v:"とまらず",cm:"まさつが足りず 止まれぬ パッドになった…"};
   else if(ratios[1]===0)mixBad={axisKill:1,v:"ほうかい",cm:"骨格が なく ブレーキ時に 崩壊してしまう"};
   else if(ratios[3]===0)mixBad={axisKill:2,v:"なき",cm:"キィィィィィィ！ しずけさが まるで ない"};
   const legend=CATS.some((c,i)=>c.opts[chosen[i]].leg);
